@@ -6,17 +6,17 @@
   "testFeed": [
     {
       "nativeApp": true,
-      "belongsTo": "optimus",
+      "belongsTo": "tester",
       "runsOn": "any",
       "appDir": "app",
       "optimusDesiredCapabilities": {
         "appiumServerCapabilities": {
-          "app": "hellooptimus.apk",
+          "app": "paytm.apk",
           "platformName": "Android"
         },
         "androidOnlyCapabilities": {
-          "appActivity": "com.testvagrant.hellooptimus.MainActivity",
-          "appPackage": "com.testvagrant.hellooptimus",
+          "appActivity": "net.one97.paytm.AJRJarvisSplash",
+          "appPackage": "net.one97.paytm",
           "avdLaunchTimeout": 300000,
           "useKeystore": false
         }
@@ -27,7 +27,6 @@
         "grantAllPermissions": true,
         "captureVideo": true
       }
-
     }
   ]
 }

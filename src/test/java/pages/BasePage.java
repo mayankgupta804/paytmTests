@@ -1,15 +1,19 @@
 package pages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class BasePage {
@@ -23,6 +27,7 @@ public class BasePage {
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(this.driver, 30);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean allowPermissionPopup() {
@@ -164,6 +169,21 @@ public class BasePage {
         hideKeyboard();
     }
 
+    public void sendKeys(By by,String text){
+        waitForElementToBeClickable(by);
+        driver.findElement(by).click();
+        if(text!=null){
+            if(!driver.findElement(by).getText().isEmpty()){
+                driver.findElement(by).clear();
+            }
+            driver.findElement(by).sendKeys(text);
+        }else{
+            Assert.assertNotNull(driver.findElement(by).getText());
+        }
+        driver.getKeyboard();
+        hideKeyboard();
+    }
+
     public void hideKeyboard() {
         try {
             driver.hideKeyboard();
@@ -255,6 +275,39 @@ public class BasePage {
         driver.findElement(by).click();
     }
 
+    //TODO
+    public WebElement getChildElement(By parent, By child, int index) {
+        WebElement parentElement = driver.findElement(parent);
+        List<WebElement> childElements = parentElement.findElements(child);
+        WebElement childElement = childElements.get(index);
+        return childElement;
+    }
+
+    //TODO
+    public void swipeWithCoordinateLocation(AppiumDriver driver) {
+        HashMap<String, Double> swipeObject = new HashMap<>();
+        swipeObject.put("startX", 0.5);
+        swipeObject.put("startY", 0.5);
+        swipeObject.put("endX", 0.5);
+        swipeObject.put("endY", 0.01);
+        swipeObject.put("duration", 1.0);
+        swipeObject.put("duration", 3.0);
+        driver.executeScript("mobile: swipe", swipeObject);
+    }
+
+    //TODO
+    public void touchAction(AppiumDriver driver, Dimension size) {
+        int startX = (size.width * 20) / 100;
+        int startY = (size.height * 62) / 100;
+        int endX = (size.width * 22) / 100;
+        int endY = (size.height * 35) / 100;
+        TouchAction action = new TouchAction(driver);
+        action.press(startX, startY)
+                .moveTo(endX, endY)
+                .release();
+        driver.performTouchAction(action);
+    }
+
 
     public void swipeRightToLeftToFindElementAndClick(By byOfElementToSwipeOn, By byOfElementToBeFound) {
 
@@ -318,6 +371,13 @@ public class BasePage {
 
     protected void swipeFromTo(WebElement startElement, WebElement stopElement) {
         driver.swipe(startElement.getLocation().getX(), startElement.getLocation().getY(), stopElement.getLocation().getX(), stopElement.getLocation().getY(), 1000);
+    }
+
+    protected void scrollInDirection(String direction) {
+        JavascriptExecutor js = driver;
+        HashMap<String, String> scrollObject = new HashMap<>();
+        scrollObject.put("direction", direction);
+        js.executeScript("mobile: scroll", scrollObject);
     }
 
     public void swipeFromLeftToRight(WebElement webElement) {
