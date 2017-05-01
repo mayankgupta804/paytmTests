@@ -26,6 +26,8 @@ public class HomePage extends BasePage {
     }
 
     public void clickOnPayOrScan() {
+        waitForElementToBeClickable(helpOverlay);
+        clickBy(helpOverlay);
         waitForElementToBeClickable(payOrScan);
         driver.findElement(payOrScan).click();
     }

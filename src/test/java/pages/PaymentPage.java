@@ -1,50 +1,84 @@
 package pages;
 
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
 
 public class PaymentPage extends BasePage {
 
     private AppiumDriver driver;
-    private By cardNo = By.xpath("//android.view.View[@index=2]/android.widget.EditText");
-    private By monthTab = By.xpath("//android.view.View[@index=3]/android.widget.Button");
-    private By month = By.xpath("//android.widget.ListView/android.widget.CheckedTextView[@index=3]");
-    private By yearTab = By.xpath("//android.view.View[@index=4]/android.widget.Button");
-    private By year = By.xpath("//android.widget.ListView/android.widget.CheckedTextView[@index=7]");
-    private By cvv = By.xpath("//android.view.View[@index=5]/android.widget.EditText");
-    private By payNow = By.xpath("//android.view.View[@index=8]/android.widget.Button");
+
+    @FindAll({
+            @FindBy(xpath = "//android.view.View[@index=4]/android.widget.EditText"),
+            @FindBy(xpath = "//android.view.View[@index=2]/android.widget.EditText")
+    })
+    private WebElement cardNo;
+
+    @FindAll({
+            @FindBy(xpath = "//android.view.View[@index=5]/android.widget.Button"),
+            @FindBy(xpath = "//android.view.View[@index=3]/android.widget.Button")
+    })
+    private WebElement monthTab;
+
+    @FindBy(xpath = "//android.widget.ListView/android.widget.CheckedTextView[@index=3]")
+    private WebElement month;
+
+    @FindAll({
+            @FindBy(xpath = "//android.view.View[@index=4]/android.widget.Button"),
+            @FindBy(xpath = "//android.view.View[@index=6]/android.widget.Button")
+    })
+    private WebElement yearTab;
+
+    @FindBy(xpath = "//android.widget.ListView/android.widget.CheckedTextView[@index=7]")
+    private WebElement year;
+
+    @FindAll({
+            @FindBy(xpath = "//android.view.View[@index=7]/android.widget.EditText"),
+            @FindBy(xpath = "//android.view.View[@index=5]/android.widget.EditText")
+    })
+    private WebElement cvv;
+
+    @FindAll({
+            @FindBy(xpath = "//android.view.View[@index=10]/android.widget.Button"),
+            @FindBy(xpath = "//android.view.View[@index=8]/android.widget.Button")
+    })
+    private WebElement payNow;
 
     public PaymentPage(AppiumDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
     public void enterCardNo(String cardNum) {
         waitForElementToBeVisible(cardNo);
-        sendKeys(cardNo,cardNum);
+        cardNo.sendKeys(cardNum);
     }
 
     public void enterCVV(String cvv) {
         waitForElementToBeVisible(this.cvv);
-        sendKeys(this.cvv,cvv);
+        this.cvv.sendKeys(cvv);
     }
 
     public void selectMonth() {
-        waitForElementToBeVisible(monthTab);
-        clickBy(monthTab);
+        waitForElementToBeClickable(monthTab);
+        monthTab.click();
         waitForElementToBeClickable(month);
-        clickBy(month);
+        month.click();
     }
 
     public void selectYear() {
-        waitForElementToBeVisible(yearTab);
-        clickBy(yearTab);
+        waitForElementToBeClickable(yearTab);
+        yearTab.click();
         waitForElementToBeClickable(year);
-        clickBy(year);
+        year.click();
     }
 
-    public void selectPayNow(){
+    public void selectPayNow() {
         waitForElementToBeClickable(payNow);
-        clickBy(payNow);
+        payNow.click();
     }
 }

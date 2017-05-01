@@ -11,13 +11,19 @@ Feature: Login Feature
     And I choose prepaid option and enter my mobile number as 9430790750 and amount as 10
     And I proceed to pay the amount
     And I enter my card number as 1234123412341234
-    And I enter my cvv as 221
     And I enter the month and year
+    And I enter my cvv as 221
     And I choose to pay now
 
   @paytm-pay-or-scan
-    Scenario: I want to send money
+  Scenario: I want to send money
     And I click on pay or scan button
+    And I proceed to enter the mobile number
+    And I enter the mobile number as 7204515609 and amount as 10 and I proceed
+    And I enter my card number as 1234123412341234
+    And I enter my cvv as 221
+    And I enter the month and year
+    And I choose to pay now
 
   @paytmLogin-error
   Scenario: I want to log into my account

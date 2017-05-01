@@ -1,7 +1,6 @@
 package pages;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -13,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class BasePage {
@@ -42,6 +40,10 @@ public class BasePage {
         } catch (TimeoutException e) {
         }
         return false;
+    }
+
+    public void waitForElementsToBeVisible(List<WebElement> webElements){
+        wait.until(ExpectedConditions.visibilityOfAllElements(webElements));
     }
 
     public void waitForElementToBeVisible(By by) {
