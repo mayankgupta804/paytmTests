@@ -1,4 +1,4 @@
-Feature: Login Feature
+Feature: Facebook Login Feature
   As a user I should be able to log into my account.
 
   Background: Login
@@ -7,8 +7,8 @@ Feature: Login Feature
 
   @paytmLogin-facebook
   Scenario: I want to log into my account through facebook
-    And I click on facebook button
+    And I tap on facebook button
     And I enter my email or phone number as 7204515609
     And I enter my facebook password as dcba321
-    And I click on facebook login button
-    And I click on continue button
+    And I tap on facebook login button
+    And I tap on continue button

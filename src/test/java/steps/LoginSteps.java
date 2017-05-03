@@ -2,6 +2,7 @@ package steps;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 import cucumber.api.java8.En;
 import io.appium.java_client.AppiumDriver;
 import pages.FacebookPage;
@@ -26,7 +27,7 @@ public class LoginSteps extends BaseSteps implements En {
         new LoginPage(getDriver()).clickOnLogin();
     }
 
-    @And("^I click on facebook button$")
+    @When("^I tap on facebook button$")
     public void iClickOnFacebookButton() throws Throwable {
         new LoginPage(getDriver()).clickOnFacebook();
     }
@@ -41,17 +42,17 @@ public class LoginSteps extends BaseSteps implements En {
         new FacebookPage(getDriver()).enterPassword(password);
     }
 
-    @And("^I click on facebook login button$")
+    @And("^I tap on facebook login button$")
     public void iClickOnFacebookLoginButton() throws Throwable{
         new FacebookPage(getDriver()).clickOnLogin();
     }
 
-    @And(("^I click on continue button$"))
+    @And(("^I tap on continue button$"))
     public void iClickOnContinueButton() throws Throwable{
         new FacebookPage(getDriver()).clickOnContinue();
     }
 
-    @And("^I click on \"do it later\"$")
+    @And("^I tap on \"do it later\"$")
     public void clickOnDoItLater() throws Throwable{
         new LoginPage(getDriver()).clickOnDoItLater();
     }

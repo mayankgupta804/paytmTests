@@ -57,7 +57,7 @@ public class TransactionSteps extends BaseSteps {
         new PaymentPage(getDriver()).selectPayNow();
     }
 
-    @And("^I click on pay or scan button$")
+    @And("^I tap on pay or scan button$")
     public void iClickOnPayOrScanButton(){
         new HomePage(getDriver()).clickOnPayOrScan();
     }
