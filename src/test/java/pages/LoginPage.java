@@ -12,10 +12,12 @@ public class LoginPage extends BasePage {
     private String app_package_name = "net.one97.paytm:id/";
 
     private By mobileNumber = By.id(app_package_name + "edit_username");
-    private By password = By.id(app_package_name + "lyt_password");
+    private By password = By.id(app_package_name + "edit_password");
     private By loginButton = By.id(app_package_name + "lyt_sign_in_button");
     private By facebookButton = By.id(app_package_name + "btn_facebook");
     private By doItLater = By.xpath("//android.widget.TextView[1]");
+    private By denyPermission = By.id("com.android.packageinstaller:id/permission_deny_button");
+    private By cancelButton = By.id("net.one97.paytm:id/btn_cancel");
 
     public LoginPage(AppiumDriver driver) {
         super(driver);
@@ -41,6 +43,19 @@ public class LoginPage extends BasePage {
         waitForElementToBeClickable(facebookButton);
         clickBy(facebookButton);
     }
+
+    public void clickOnDenyPermission(){
+        try {
+            waitForElementToBeVisible(denyPermission);
+            clickBy(denyPermission);
+        }
+        catch (Exception e){
+
+        }
+    }
+
+
+
 
     public void clickOnDoItLater() {
         waitForElementToBeClickable(doItLater);

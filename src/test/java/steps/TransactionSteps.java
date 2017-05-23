@@ -4,6 +4,7 @@ package steps;
 import cucumber.api.java.en.And;
 import io.appium.java_client.AppiumDriver;
 import pages.HomePage;
+import pages.LoginPage;
 import pages.MobileRechargePage;
 import pages.PaymentPage;
 
@@ -15,6 +16,8 @@ public class TransactionSteps extends BaseSteps {
 
     @And("^I choose mobile prepaid option$")
     public void iClickOnMobilePrepaidButton() throws Throwable {
+        new LoginPage(getDriver()).clickOnDenyPermission();
+        new LoginPage(getDriver()).clickOnDenyPermission();
         new HomePage(getDriver()).clickOnMobilePrepaid();
     }
 
@@ -57,7 +60,7 @@ public class TransactionSteps extends BaseSteps {
         new PaymentPage(getDriver()).selectPayNow();
     }
 
-    @And("^I tap on pay or scan button$")
+    @And("^I click on pay or scan button$")
     public void iClickOnPayOrScanButton(){
         new HomePage(getDriver()).clickOnPayOrScan();
     }
